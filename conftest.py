@@ -1,8 +1,9 @@
 import pytest
 from selenium import webdriver
-from pages.base_page import BasePage
+from pages.main_page import MainPage
 
-BASE_URL = "https://qa-scooter.praktikum-services.ru/"  # поменяй на свой URL
+BASE_URL = "https://qa-scooter.praktikum-services.ru/"
+
 
 @pytest.fixture
 def driver():
@@ -10,9 +11,7 @@ def driver():
     driver = webdriver.Chrome(options=options)
     driver.get(BASE_URL)
     driver.maximize_window()
-
-    # Закрываем баннер один раз для всего теста
-    BasePage(driver).dismiss_cookie()
-
+    main_page = MainPage(driver)
+    main_page.dismiss_cookie()
     yield driver
     driver.quit()
