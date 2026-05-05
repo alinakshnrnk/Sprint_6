@@ -62,3 +62,8 @@ class MainPage(BasePage):
     @allure.step("Дождаться главной страницы")
     def wait_for_home_page(self):
         self.find_visible(self.HOME_PAGE)
+    
+    @allure.step("Получить текущий URL")
+    def get_home_page_url(self):
+        self.find_visible(self.HOME_PAGE)
+        return self.get_current_url()
